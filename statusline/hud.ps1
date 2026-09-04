@@ -199,6 +199,7 @@ function Format-Duration([double]$Milliseconds) {
   # every step and rendered "3h50m" instead of "2h49m". Floor every component,
   # including the initial seconds conversion.
   $Seconds = [Math]::Floor($Milliseconds / 1000)
+  if ($Seconds -ge 86400) { return "{0}d{1}h{2}m" -f [Math]::Floor($Seconds / 86400), [Math]::Floor(($Seconds % 86400) / 3600), [Math]::Floor(($Seconds % 3600) / 60) }
   if ($Seconds -ge 3600) { return "{0}h{1}m" -f [Math]::Floor($Seconds / 3600), [Math]::Floor(($Seconds % 3600) / 60) }
   if ($Seconds -ge 60) { return "{0}m" -f [Math]::Floor($Seconds / 60) }
   return "${Seconds}s"
