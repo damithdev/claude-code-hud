@@ -12,7 +12,7 @@ figure is an estimate or has a known limit, this guide says so rather than gloss
 
 ```
 Opus 5 (1M) ⚡hi 💡 │ 🧠 13% (129k) │ 📤 8.6k │ 🔥 316k (0%) │ 🔋5H 40% (2h53m) │ 🗓️7D 90% (1d14h, dry ~14h24m@1.2x) │ 💵 $4.37
-📂 C:/Users/dev │ ⏰ 15m │ 🔧 1 (Bash) │ 🔌 3 │ 🪝 5 │ 📜 19 │ 🧠 5
+📂 C:/Users/dev │ ⏰ 15m │ 🔧 1 (Bash) │ 🔌 3 │ 🪝 5 │ 📜 19 │ 💾 5
 ```
 
 Segments disappear when they have nothing to say. No running agents, no 🛰. Zero session

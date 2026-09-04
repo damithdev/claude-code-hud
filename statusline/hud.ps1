@@ -1274,7 +1274,7 @@ switch ($Mode) {
     $McpDisplay = if ($McpCount -gt 0) { "🔌 $($C.Teal)$McpCount$Reset" } else { '' }
     $HookDisplay = if ($HookCount -gt 0) { "🪝 $($C.Teal)$HookCount$Reset" } else { '' }
     $RuleDisplay = if ($RuleCount -gt 0) { "📜 $($C.Teal)$RuleCount$Reset" } else { '' }
-    $MemoryDisplay = if ($MemoryCount -gt 0) { "🧠 $($C.Teal)$MemoryCount$Reset" } else { '' }
+    $MemoryDisplay = if ($MemoryCount -gt 0) { "💾 $($C.Teal)$MemoryCount$Reset" } else { '' }
 
     $DurationSeg = "⏰ $($C.Subtext)$(Format-Duration $TotalDuration)$Reset"
     $HudLine2 = Join-Segments @(

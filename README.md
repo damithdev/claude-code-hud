@@ -5,7 +5,7 @@ actually cost me, and how long can I keep this up?**
 
 ```
 Opus 5 (1M) ⚡hi 💡 │ 🧠 13% (129k) │ 📤 8.6k │ 🔥 316k (0%) │ 🔋5H 40% (2h53m) │ 🗓️7D 90% (1d14h, dry ~14h24m@1.2x) │ 💵 $4.37
-📂 C:/dev/my-project  main ✔ │ ⏰ 15m │ 🔧 1 (Bash) │ 🔌 3 │ 🪝 5 │ 📜 19 │ 🧠 5
+📂 C:/dev/my-project  main ✔ │ ⏰ 15m │ 🔧 1 (Bash) │ 🔌 3 │ 🪝 5 │ 📜 19 │ 💾 5
 ```
 
 The default status line tells you which model you are on. This one tells you
