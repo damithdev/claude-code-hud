@@ -1,0 +1,21 @@
+{
+  "name": "hud",
+  "displayName": "Claude Code HUD",
+  "version": "1.0.0",
+  "description": "A cost-weighted status line for Claude Code on Windows. Shows what the current turn actually cost, how fast you are burning your 5-hour and 7-day budgets, and when you will run dry.",
+  "author": {
+    "name": "damithdev"
+  },
+  "homepage": "https://github.com/damithdev/claude-code-hud",
+  "repository": "https://github.com/damithdev/claude-code-hud",
+  "license": "MIT",
+  "keywords": [
+    "statusline",
+    "hud",
+    "token-usage",
+    "rate-limits",
+    "cost",
+    "powershell",
+    "windows"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-code-hud",
+  "owner": {
+    "name": "damithdev",
+    "url": "https://github.com/damithdev"
+  },
+  "metadata": {
+    "description": "Cost-weighted status line for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "hud",
+      "source": "./",
+      "description": "A cost-weighted status line for Claude Code on Windows. Shows what the current turn actually cost, how fast you are burning your 5-hour and 7-day budgets, and when you will run dry.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "license": "MIT",
+      "homepage": "https://github.com/damithdev/claude-code-hud",
+      "repository": "https://github.com/damithdev/claude-code-hud",
+      "author": {
+        "name": "damithdev"
+      },
+      "keywords": ["statusline", "hud", "token-usage", "rate-limits", "cost"]
+    }
+  ]
+}
