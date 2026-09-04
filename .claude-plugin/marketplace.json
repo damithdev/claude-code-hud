@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "Cost-weighted status line for Claude Code",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "plugins": [
     {
       "name": "hud",
       "source": "./",
       "description": "A cost-weighted status line for Claude Code on Windows. Shows what the current turn actually cost, how fast you are burning your 5-hour and 7-day budgets, and when you will run dry.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "productivity",
       "license": "MIT",
       "homepage": "https://github.com/damithdev/claude-code-hud",
