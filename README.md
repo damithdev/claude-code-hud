@@ -101,6 +101,19 @@ and — the check that actually matters — renders a bar when fed a sample payl
 A status line that throws prints nothing, which looks identical to one that was
 never configured.
 
+### Updating
+
+If you installed as a plugin: `/plugin update hud@claude-code-hud`, **then
+`/hud:install` again.** The plugin cache is version-pinned — each update lands
+in a new `.../hud/<version>` directory rather than overwriting one in place —
+so `settings.json` keeps pointing at the old version's path after an update
+until you rewire it. Skipping the second step means the bar keeps silently
+running the version you just updated away from. `/hud:doctor` will flag this
+as "points somewhere else" if you forget.
+
+If you installed as a plain script: `git pull`. Nothing else changes, since the
+path in `settings.json` never moves.
+
 ---
 
 ## What the bar says
