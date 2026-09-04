@@ -65,6 +65,9 @@ plugin's own `settings.json` only honours `agent` and `subagentStatusLine`. So
 `/hud:install` writes the entry into your `settings.json` for you, after showing
 you exactly what it will change.
 
+You will need to run it again after every update — see
+[Updating](#updating) below.
+
 ### As a plain script
 
 ```powershell
@@ -204,7 +207,7 @@ status line that is not this one unless you pass `-Force`.
 
 | command | does |
 |---|---|
-| `/hud:install` | writes the status line into `settings.json`, dry run first |
+| `/hud:install` | writes the status line into `settings.json`, dry run first — re-run after every `/plugin update` |
 | `/hud:doctor` | checks it is installed, wired, and rendering |
 | `/hud:guide` | explains a segment, or why a turn cost what it did |
 
