@@ -4,7 +4,7 @@ A status line for Claude Code that answers one question: **what did that turn
 actually cost me, and how long can I keep this up?**
 
 ```
-Opus 5 (1M) ⚡hi 💡 │ 🧠 13% (129k) │ 📤 8.6k │ 🔥 316k (0%) │ 🔋5H 40% (2h53m) │ 🗓️7D 90% (1d14h, dry ~14h24m@1.2x) │ 💵 $4.37
+Opus 5 (1M) ⚡hi 💡 │ 🏢 Acme │ 🧠 13% (129k) │ 📤 8.6k │ 🔥 316k (0%) │ 🔋5H 40% (2h53m) │ 🗓️7D 90% (1d14h, dry ~14h24m@1.2x) │ 💵 $4.37
 📂 C:/dev/my-project  main ✔ │ ⏰ 15m │ 🔧 1 (Bash) │ 🔌 3 │ 🪝 5 │ 📜 19 │ 💾 5
 ```
 
@@ -128,6 +128,7 @@ Zero session cost, no `💵`. Not in a git repo, no branch. An empty slot means
 | segment | meaning |
 |---|---|
 | `Opus 5 (1M) ⚡hi 💡` | model, effort level, thinking enabled |
+| `🏢 Acme` | organization of the signed-in seat (from `.claude.json`) |
 | `🧠 13% (129k)` | context window fullness — and therefore your cost multiplier |
 | `📤 8.6k` | raw output tokens for the whole turn so far. Output bills at 5x input |
 | `🛰 2` | subagents currently running |
