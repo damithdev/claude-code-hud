@@ -358,6 +358,20 @@ function Get-SettingsJson {
   try { return (Get-Content $Path -Raw | ConvertFrom-Json) } catch { return $null }
 }
 
+# Seat org comes from the account profile Claude Code caches in .claude.json
+# (oauthAccount.organizationName); the stdin payload doesn't carry it. That
+# file sits in CLAUDE_CONFIG_DIR when set, else the home dir (not ~/.claude).
+# Regex, not ConvertFrom-Json: the file is ~200KB and this runs every render.
+function Get-SeatOrg {
+  $Dir = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { $env:USERPROFILE }
+  $Path = Join-Path $Dir '.claude.json'
+  if (-not (Test-Path $Path)) { return '' }
+  try { $Text = [IO.File]::ReadAllText($Path) } catch { return '' }
+  $M = [regex]::Match($Text, '"organizationName"\s*:\s*"([^"]*)"')
+  if ($M.Success) { return $M.Groups[1].Value }
+  return ''
+}
+
 function Get-McpCount($Settings, [string]$ProjectDir) {
   $Count = 0
   if ($Settings -and $Settings.PSObject.Properties.Name -contains 'mcpServers') {
@@ -1209,6 +1223,9 @@ switch ($Mode) {
     if ($Thinking -eq $true -or $ThinkingTextSingle.ToLowerInvariant() -eq 'true') { $ModelDisplaySingle += " $($C.Yellow)💡$Reset" }
 
     $Row1Parts = @("$ModelDisplaySingle")
+
+    $SeatOrg = Get-SeatOrg
+    if ($SeatOrg) { $Row1Parts += "🏢 $($C.Lavender)$SeatOrg$Reset" }
 
     $CtxEnd = Context-Color $CurrentTokens
     $CtxPct = "🧠 $Bold$(Rgb $CtxEnd[0] $CtxEnd[1] $CtxEnd[2])${ContextPct}%$Reset $($C.Overlay)(${CurrentK}k)$Reset"

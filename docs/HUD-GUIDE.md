@@ -11,7 +11,7 @@ figure is an estimate or has a known limit, this guide says so rather than gloss
 ## The bar
 
 ```
-Opus 5 (1M) ⚡hi 💡 │ 🧠 13% (129k) │ 📤 8.6k │ 🔥 316k (0%) │ 🔋5H 40% (2h53m) │ 🗓️7D 90% (1d14h, dry ~14h24m@1.2x) │ 💵 $4.37
+Opus 5 (1M) ⚡hi 💡 │ 🏢 Acme │ 🧠 13% (129k) │ 📤 8.6k │ 🔥 316k (0%) │ 🔋5H 40% (2h53m) │ 🗓️7D 90% (1d14h, dry ~14h24m@1.2x) │ 💵 $4.37
 📂 C:/Users/dev │ ⏰ 15m │ 🔧 1 (Bash) │ 🔌 3 │ 🪝 5 │ 📜 19 │ 💾 5
 ```
 
@@ -67,6 +67,12 @@ multiplier on everything you do, which is why 🧠 matters more than it looks.
 
 Model, effort level, and whether extended thinking is on. `⚡hi` is high effort; `med` and
 `lo` also appear. 💡 shows only when thinking is enabled.
+
+### `🏢 Acme` — seat organization
+
+The organization your seat belongs to, read from `oauthAccount.organizationName` in
+`.claude.json` (in `CLAUDE_CONFIG_DIR` when set, else your home folder). Useful when you run
+more than one account through separate config dirs. Hidden when the file has no org.
 
 ### `🧠 13% (129k)` — context
 
