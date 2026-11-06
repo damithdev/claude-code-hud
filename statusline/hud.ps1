@@ -584,6 +584,28 @@ $FiveHourReset = Get-JsonValue $Data @('rate_limits', 'five_hour', 'resets_at') 
 $SevenDayPctRaw = Get-JsonValue $Data @('rate_limits', 'seven_day', 'used_percentage') $null
 $SevenDayReset = Get-JsonValue $Data @('rate_limits', 'seven_day', 'resets_at') $null
 
+# Hooks never receive rate_limits, only the status line does, so save them for
+# hooks to read. Usage is per account, hence the account's config dir. A payload
+# without limits keeps the last reading: it stays a lower bound until resets_at.
+$FiveHourLimit = Get-JsonValue $Data @('rate_limits', 'five_hour') $null
+$SevenDayLimit = Get-JsonValue $Data @('rate_limits', 'seven_day') $null
+if (($null -ne $FiveHourLimit) -or ($null -ne $SevenDayLimit)) {
+  $UsageTmp = $null
+  try {
+    $ConfigDir = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { Join-Path $env:USERPROFILE '.claude' }
+    $UsageDir = Join-Path $ConfigDir 'state'
+    [void][IO.Directory]::CreateDirectory($UsageDir)
+    $UsageJson = [pscustomobject]@{ five_hour = $FiveHourLimit; seven_day = $SevenDayLimit } | ConvertTo-Json -Depth 5 -Compress
+    # Unique temp name and a replace: sessions render concurrently and readers must never see a partial file.
+    $UsageTmp = Join-Path $UsageDir "usage.json.$PID.tmp"
+    # No BOM: jq rejects a file that starts with one.
+    [IO.File]::WriteAllText($UsageTmp, $UsageJson, (New-Object System.Text.UTF8Encoding $false))
+    Move-Item -LiteralPath $UsageTmp -Destination (Join-Path $UsageDir 'usage.json') -Force -ErrorAction Stop
+  } catch {
+    if ($UsageTmp) { Remove-Item -LiteralPath $UsageTmp -Force -ErrorAction SilentlyContinue }
+  }
+}
+
 $CurrentTokens = 0
 if ($null -ne $CurrentUsage) {
   if ($CurrentUsage.PSObject.Properties.Name -contains 'input_tokens') {
