@@ -128,7 +128,7 @@ Zero session cost, no `💵`. Not in a git repo, no branch. An empty slot means
 | segment | meaning |
 |---|---|
 | `Opus 5 (1M) ⚡hi 💡` | model, effort level, thinking enabled |
-| `🏢 Acme` | organization of the signed-in seat (from `.claude.json`) |
+| `🏢 Acme` | organization of the signed-in seat (from `.claude.json`). To show a symbol instead, map the org name in `~/.claude/hud-seats.json`: `{ "Acme": "🚀" }` |
 | `🧠 13% (129k)` | context window fullness — and therefore your cost multiplier |
 | `📤 8.6k` | raw output tokens for the whole turn so far. Output bills at 5x input |
 | `🛰 2` | subagents currently running |

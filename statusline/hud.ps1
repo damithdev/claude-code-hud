@@ -372,6 +372,17 @@ function Get-SeatOrg {
   return ''
 }
 
+# Optional org-name-to-symbol map, kept outside the repo so account names stay
+# local: ~/.claude/hud-seats.json, e.g. { "Acme": "X" }. Empty when unmapped.
+function Get-SeatSymbol([string]$Org) {
+  $Path = Join-Path $env:USERPROFILE '.claude\hud-seats.json'
+  if (-not (Test-Path $Path)) { return '' }
+  try { $Map = [IO.File]::ReadAllText($Path) | ConvertFrom-Json } catch { return '' }
+  $Entry = $Map.PSObject.Properties[$Org]
+  if ($Entry) { return [string]$Entry.Value }
+  return ''
+}
+
 function Get-McpCount($Settings, [string]$ProjectDir) {
   $Count = 0
   if ($Settings -and $Settings.PSObject.Properties.Name -contains 'mcpServers') {
@@ -1225,7 +1236,10 @@ switch ($Mode) {
     $Row1Parts = @("$ModelDisplaySingle")
 
     $SeatOrg = Get-SeatOrg
-    if ($SeatOrg) { $Row1Parts += "🏢 $($C.Lavender)$SeatOrg$Reset" }
+    if ($SeatOrg) {
+      $SeatSymbol = Get-SeatSymbol $SeatOrg
+      $Row1Parts += if ($SeatSymbol) { $SeatSymbol } else { "🏢 $($C.Lavender)$SeatOrg$Reset" }
+    }
 
     $CtxEnd = Context-Color $CurrentTokens
     $CtxPct = "🧠 $Bold$(Rgb $CtxEnd[0] $CtxEnd[1] $CtxEnd[2])${ContextPct}%$Reset $($C.Overlay)(${CurrentK}k)$Reset"
