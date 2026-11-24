@@ -583,6 +583,10 @@ $FiveHourPctRaw = Get-JsonValue $Data @('rate_limits', 'five_hour', 'used_percen
 $FiveHourReset = Get-JsonValue $Data @('rate_limits', 'five_hour', 'resets_at') $null
 $SevenDayPctRaw = Get-JsonValue $Data @('rate_limits', 'seven_day', 'used_percentage') $null
 $SevenDayReset = Get-JsonValue $Data @('rate_limits', 'seven_day', 'resets_at') $null
+# Claude Code resends the last response's rate_limits until the next API call, so a window whose reset has passed still carries its old %.
+$Now = [DateTimeOffset]::UtcNow
+$Dt = Parse-Reset $FiveHourReset; if ($null -ne $Dt -and $Dt -le $Now) { $FiveHourPctRaw = 0 }
+$Dt = Parse-Reset $SevenDayReset; if ($null -ne $Dt -and $Dt -le $Now) { $SevenDayPctRaw = 0 }
 
 $CurrentTokens = 0
 if ($null -ne $CurrentUsage) {
